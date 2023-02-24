@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<%# <!DOCTYPE html>
 <html>
 <body>
   <form action="/users" method="post" accept-charset="utf-8">
@@ -11,4 +11,24 @@
     <input type="submit" value="Submit">
   </form>
 </body>
-</html>
+</html> %>
+
+<!-- <%= form_tag do %>
+  <%= label_tag(:username, "Username:") %>
+  <%= text_field_tag(:username) %><br><br>
+  <%= label_tag(:password, "Password:") %>
+  <%= password_field_tag(:password) %><br><br>
+  <%= label_tag(:email, "E-mail:") %>
+  <%= email_field_tag(:email) %><br><br>
+  <%= submit_tag("Submit") %>
+<% end %> -->
+
+<%= form_with url: users_path do |form| %>
+  <%= form.label :username, "Username:" %>
+  <%= form.text_field :username, placeholder:"Your username here" %><br><br>
+  <%= form.label :password, "Password:" %>
+  <%= form.password_field :password, placeholder:"******" %><br><br>
+  <%= form.label :email, "E-mail:" %>
+  <%= form.email_field :email, placeholder:"example@example.com" %><br><br>
+  <%= form.submit "Submit" %>
+<% end %>
