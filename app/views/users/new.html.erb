@@ -23,7 +23,21 @@
   <%= submit_tag("Submit") %>
 <% end %> -->
 
-<%= form_with url: users_path do |form| %>
+<% if @user.errors.any? %>
+  <div>
+    <h2><%= pluralize(@user.errors.count, "error") %> were encountered when trying to create a user:</h2>
+
+    <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li>
+          <%= msg %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_with model: @user do |form| %>
   <%= form.label :username, "Username:" %>
   <%= form.text_field :username, placeholder:"Your username here" %><br><br>
   <%= form.label :password, "Password:" %>
